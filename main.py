@@ -24,8 +24,13 @@ ui = FlaskUI(app=app, width=768, height=800)
 def main_page():
     return render_template("main.jinja")
 
-@app.route("/")
+@app.route("/Anime")
 def anime_page():
     return render_template("anime.jinja")
+
+@app.route("/Manga")
+def manga_page():
+    return render_template("manga.jinja")
+
 
 app.run(debug=True)
