@@ -1,0 +1,31 @@
+{% extends 'template.jinja' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+     <h5>Tema</h5>
+        <br>
+        {% block settings %}
+        <div class="input-field col s12">
+            <select id="theme-select" class="browser-default">
+            {% for key in themes.keys()%}
+                {% for key in themes.keys()%}
+                    {% if key == theme %}
+                        <option value="{{key}}" selected >{{key.capitalize()}}</option>
+                    {% else %}
+                        <option value="{{key}}">{{key.capitalize()}}</option>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            </select>
+        </div>
+           
+        </div>
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="static/js/config.js"></script>
+{% endblock %}

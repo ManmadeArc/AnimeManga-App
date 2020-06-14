@@ -1,0 +1,9 @@
+  
+nav a.sidenav-trigger {
+    display:block !important;
+}
+nav .brand-logo {
+left: 50%  !important;
+-webkit-transform: translateX(-50%) !important;
+transform: translateX(-50%) !important;
+}

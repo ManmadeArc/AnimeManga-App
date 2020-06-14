@@ -12,10 +12,14 @@ from flask import (
 )
 from flaskwebgui import FlaskUI
 
-from config_file import FlaskConfig
+from config_file import (FlaskConfig, Config)
+
+import json, db
 
 
-app = Flask(__name__, template_folder="Templates")
+
+
+app = Flask(__name__)
 app.config.from_object(FlaskConfig)
 
 ui = FlaskUI(app=app, width=768, height=800)
@@ -31,6 +35,23 @@ def anime_page():
 @app.route("/Manga")
 def manga_page():
     return render_template("manga.jinja")
+
+@app.route("/Config")
+def config_page():
+    return render_template("Config.jinja", themes=Config.theme, theme=db.get_theme())
+
+@app.route('/set', methods=['POST'])
+def set_setting():
+    change = request.form
+    for key, val in change.items():
+        is_defined = type(Config.__dict__.get(key, None)) == dict
+        if is_defined:
+            options = Config.__dict__[key]
+            if val not in options:
+                continue
+            db.savetheme(val)
+    
+    return redirect(url_for('config_page'))
 
 
 app.run(debug=True)
