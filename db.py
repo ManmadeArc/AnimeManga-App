@@ -1,4 +1,5 @@
 import json
+import config_file
 
 def savetheme(value):
     data={}
@@ -9,5 +10,9 @@ def savetheme(value):
 def get_theme():
     with open('default.json') as file:
         data = json.load(file)
-    print(data["theme"])
     return(data["theme"])
+
+def get_theme_data():
+    x = get_theme()
+    return config_file.Config.theme[x]
+

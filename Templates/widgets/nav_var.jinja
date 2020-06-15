@@ -1,31 +1,29 @@
 <nav>
 
-<div class="nav-wrapper">
-<link rel ="stylesheet" href=/static/css/nav.css> 
-<a href="/" class="brand-logo center">Inicio</a>
-<ul class="right ">
-<li> <a href="/Config"><i class="material-icons">settings</i></a></li>
-
-</ul>
-
-<ul class="left">
-<a href="#" data-target="mobile-demo" class="sidenav-trigger" ><i class="material-icons">menu</i></a>
-</ul>
+    <div class="nav-wrapper {{actual.accent}}">
+        <link rel ="stylesheet" href=/static/css/nav.css> 
+            <a href="/" class="brand-logo center">Inicio</a>
+                <ul class="right ">
+                    <li> <a href="/Config"><i class="material-icons">settings</i></a></li>
+                </ul>
+            <ul class="left">
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger" ><i class="material-icons">menu</i></a>
+        </ul>
 
 
 
-</div>
+    </div>
 
 
 
 </nav>
 
-<ul class="sidenav" id="mobile-demo">
+<ul class="sidenav {{actual.bg_1}}" id="mobile-demo">
     
-    <li><a href="/">Inicio</a></li>
-    <li><a href="/Anime">Anime</a></li>
-    <li><a href="/Manga">Manga</a></li>
-    <li><a href="/Config">Configuracion <i class="material-icons">settings</i></a></li>
+    <li><a href="/" class="{{actual.text_color}}">Inicio</a></li>
+    <li><a href="/Anime" class="{{actual.text_color}}">Anime</a></li>
+    <li><a href="/Manga" class="{{actual.text_color}}">Manga</a></li>
+    <li><a href="/Config" class="{{actual.text_color}}">Configuracion <i class="material-icons {{actual.text_color}}" >settings</i></a></li>
 </ul>
 
  <script src="static/js/sideNav.js"></script>

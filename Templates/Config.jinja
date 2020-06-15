@@ -9,13 +9,11 @@
         <div class="input-field col s12">
             <select id="theme-select" class="browser-default">
             {% for key in themes.keys()%}
-                {% for key in themes.keys()%}
                     {% if key == theme %}
                         <option value="{{key}}" selected >{{key.capitalize()}}</option>
                     {% else %}
                         <option value="{{key}}">{{key.capitalize()}}</option>
                     {% endif %}
-                {% endfor %}
             {% endfor %}
             </select>
         </div>

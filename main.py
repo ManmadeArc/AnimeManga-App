@@ -26,19 +26,19 @@ ui = FlaskUI(app=app, width=768, height=800)
 
 @app.route("/")
 def main_page():
-    return render_template("main.jinja")
+    return render_template("main.jinja",actual=db.get_theme_data())
 
 @app.route("/Anime")
 def anime_page():
-    return render_template("anime.jinja")
+    return render_template("anime.jinja",actual=db.get_theme_data())
 
 @app.route("/Manga")
 def manga_page():
-    return render_template("manga.jinja")
+    return render_template("manga.jinja",actual=db.get_theme_data() )
 
 @app.route("/Config")
 def config_page():
-    return render_template("Config.jinja", themes=Config.theme, theme=db.get_theme())
+    return render_template("Config.jinja", themes=Config.theme, theme=db.get_theme(), actual=db.get_theme_data())
 
 @app.route('/set', methods=['POST'])
 def set_setting():
