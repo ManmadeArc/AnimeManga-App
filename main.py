@@ -14,8 +14,7 @@ from flaskwebgui import FlaskUI
 
 from config_file import (FlaskConfig, Config)
 
-import json, db
-
+import json, db, AnimeApi
 
 
 
@@ -24,13 +23,23 @@ app.config.from_object(FlaskConfig)
 
 ui = FlaskUI(app=app, width=768, height=800)
 
+owo=AnimeApi.AnimeFlv()
+owo.refresh_data()
+
 @app.route("/")
 def main_page():
     return render_template("main.jinja",actual=db.get_theme_data())
 
 @app.route("/Anime")
 def anime_page():
-    return render_template("anime.jinja",actual=db.get_theme_data())
+    global owo
+    return render_template("anime.jinja",actual=db.get_theme_data(),data=owo.act_data(),refresh_A=True)
+
+@app.route("/Anime/refresh")
+def anime_refresh():
+    global owo
+    owo.refresh_data()
+    return redirect(url_for('anime_page'))
 
 @app.route("/Manga")
 def manga_page():

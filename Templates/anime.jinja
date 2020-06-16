@@ -1,8 +1,28 @@
  {% extends "template.jinja" %}
+
  {% block content %}
+    
     <div class="container ">
         <div class= "center-align">
-            <h4>Aqui ira el anime o si si</h4>
+            <h4>Ultimos Animes Agregados</h4>
+
+            {% for Anime in data  %}
+                <a href="/" class="{{actual.text_color}}"> 
+                
+                <div class="col s12 m7">
+                    <div class="card horizontal">
+                    <div class="card-image">
+                          <img src="data:image/png;base64,{{Anime.poster}}" alt="{{Anime.title}}" />
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content {{actual.bg_1}}">
+                        <h5>{{Anime.title}}</h5>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </a>
+            {% endfor %}
         
         
         </div>
