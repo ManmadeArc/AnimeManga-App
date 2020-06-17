@@ -41,6 +41,17 @@ def anime_refresh():
     owo.refresh_data()
     return redirect(url_for('anime_page'))
 
+@app.route("/Watch/<path:path>")
+def anime_video(path):
+    f=path
+    global owo
+    owo.get_recent_servers(f)
+    AnimeInfo=owo.Act_Ep
+    xd = owo.Act_servers
+
+    return render_template("servers.jinja",actual=db.get_theme_data(), Servers=xd, Anime=AnimeInfo )
+
+
 @app.route("/Manga")
 def manga_page():
     return render_template("manga.jinja",actual=db.get_theme_data() )

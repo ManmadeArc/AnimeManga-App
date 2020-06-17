@@ -7,7 +7,7 @@
             <h4>Ultimos Animes Agregados</h4>
 
             {% for Anime in data  %}
-                <a href="/" class="{{actual.text_color}}"> 
+                <a href="/Watch/{{Anime.id}}" class="{{actual.text_color}}"> 
                 
                 <div class="col s12 m7">
                     <div class="card horizontal">
@@ -17,6 +17,10 @@
                     <div class="card-stacked">
                         <div class="card-content {{actual.bg_1}}">
                         <h5>{{Anime.title}}</h5>
+                        <div>
+                        <div class="card-content {{actual.bg_1}}">
+                        <h5> Capitulo {{Anime.episode}} </h5>
+                        </div>
                         </div>
                     </div>
                     </div>
