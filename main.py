@@ -65,12 +65,12 @@ def anime_eps(path):
     return render_template("anime_epi_list.jinja", actual=db.get_theme_data(), DATA=owo.Episodes)
 
 
-@app.route("/Watch/ID/<string:title>/<path:episode>/<path:path>")
-def watch_anime(path,title,episode):
-    print(path)
+@app.route("/Watch/ID/<path:title>/<path:episode>/<path:idx>")
+def watch_anime(title,episode,idx):
+    print(idx)
     print(title,episode)
     global owo
-    owo.get_servers_id(path,title,episode)
+    owo.get_servers_id(idx,title,episode)
     return render_template("servers.jinja",actual=db.get_theme_data(), Servers=owo.servers['servers'], Anime=owo.servers )
 
 

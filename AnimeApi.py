@@ -57,6 +57,8 @@ class AnimeFlv():
         self.servers=servers.json()
         self.servers['title']=unquote(title)
         self.servers['episode']=episode
+        with open('search.json', 'w') as file:
+            json.dump(self.servers, file, indent=4)
        
 
 
