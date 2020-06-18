@@ -43,7 +43,6 @@ def anime_refresh():
 
 @app.route("/Anime/search")
 def anime_search():
-    
     change = request.args.get('search')
     owo.search_Anime(change)
     return render_template("results.jinja",actual=db.get_theme_data(),results=owo.search["search"],searchA=True)
@@ -58,6 +57,22 @@ def anime_video(path):
     xd = owo.Act_servers
 
     return render_template("servers.jinja",actual=db.get_theme_data(), Servers=xd, Anime=AnimeInfo )
+
+@app.route("/Anime/Episodes/<path:path>")
+def anime_eps(path):
+    global owo
+    owo.get_episodes(path)
+    return render_template("anime_epi_list.jinja", actual=db.get_theme_data(), DATA=owo.Episodes)
+
+
+@app.route("/Watch/ID/<string:title>/<path:episode>/<path:path>")
+def watch_anime(path,title,episode):
+    print(path)
+    print(title,episode)
+    global owo
+    owo.get_servers_id(path,title,episode)
+    return render_template("servers.jinja",actual=db.get_theme_data(), Servers=owo.servers['servers'], Anime=owo.servers )
+
 
 
 @app.route("/Manga")

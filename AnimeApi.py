@@ -1,6 +1,7 @@
 import requests
 import json
 import copy as cp
+from urllib.parse import unquote
 
 
 class AnimeFlv():
@@ -9,6 +10,9 @@ class AnimeFlv():
         self.Act_Ep={}
         self.Act_servers={}
         self.search={}
+        self.Episodes={}
+        self.servers={}
+
 
     def refresh_data(self):
         animes= requests.get("https://animeflv.chrismichael.now.sh/api/v1/LatestEpisodesAdded")
@@ -40,8 +44,22 @@ class AnimeFlv():
         aniList=requests.get("https://animeflv.chrismichael.now.sh/api/v1/Search/"+str(Anime))
         
         self.search=aniList.json()
-        with open('search.json', 'w') as file:
-            json.dump(self.search, file, indent=4)
+
+
+    def get_episodes(self,id):
+        for epiList in self.search['search']:
+            if epiList.get('title') == id:
+                self.Episodes=epiList
+                self.Episodes['episodes'].pop(0)
+    
+    def get_servers_id(self,id,title, episode):
+        servers=requests.get("https://animeflv.chrismichael.now.sh/api/v1/GetAnimeServers/"+str(id))
+        self.servers=servers.json()
+        self.servers['title']=unquote(title)
+        self.servers['episode']=episode
+       
+
+
 
 
 

@@ -1,0 +1,33 @@
+{% extends "template.jinja" %}
+
+{% block content %}
+
+  <div class="container ">
+        <div class= "center-align">
+            <h4>Lista de Episodios de {{DATA.title}}</h4>
+
+            {% for episode in DATA.episodes[::-1]  %}
+            
+            
+                <a href="/Watch/ID/{{DATA.title}}/{{episode.episode}}//{{episode.id}}" class="{{actual.text_color}}"> 
+                
+                <div class="col s12 m7">
+                    <div class="card horizontal">
+                    
+                    <div class="card-stacked">
+                        <div class="card-content {{actual.bg_1}}">
+                        <h5> Capitulo {{episode.episode}}</h5>
+                        
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </a>
+                
+            {% endfor %}
+        
+        
+        </div>
+    </div>
+
+{% endblock  %}
