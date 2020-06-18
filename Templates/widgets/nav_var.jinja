@@ -2,25 +2,45 @@
 
     <div class="nav-wrapper {{actual.accent}}">
         <link rel ="stylesheet" href=/static/css/nav.css> 
-        <script type="text/javascript" src="static/js/sideNav.js"></script>
+        
             <a href="/" class="brand-logo center">Inicio</a>
                 <ul class="right ">
+                    
                     <li> <a href="/Config"><i class="material-icons">settings</i></a></li>
                     {% if refresh_A  %}
                     <li> <a href="/Anime/refresh"><i class="material-icons">refresh</i></a></li>
-
                     {% endif %}
+                    
                     
                 </ul>
             <ul class="left">
             <a href="#" data-target="mobile-demo" class="sidenav-trigger" ><i class="material-icons">menu</i></a>
         </ul>
+                    {% if  searchA %}
+                    <div class="nav-content  {{actual.accent}}">
+                        <li style="color: transparent;">
+                        <form action="{{ url_for('anime_search')}}">
+                            <div class="input-field">
+                            <input id="search" type="search" name="search" required style="height: fit-content;">
+                            <label class="label-icon " for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                            </div>
+                        </form>
+                        </li>
+                        </div>
+                    {% endif %}
 
 
 
     </div>
 
+<script type="text/javascript" >
 
+$(document).ready(function(){
+  $('.sidenav').sidenav();
+});
+
+</script>
 
 </nav>
 
@@ -29,6 +49,6 @@
     <li><a href="/" class="{{actual.text_color}}">Inicio</a></li>
     <li><a href="/Anime" class="{{actual.text_color}}">Anime</a></li>
     <li><a href="/Manga" class="{{actual.text_color}}">Manga</a></li>
-    <li><a href="/Config" class="{{actual.text_color}}">Configuracion <i class="material-icons {{actual.text_color}}" >settings</i></a></li>
+    <li><a href="/Config" class="{{actual.text_color}}">Configuracion <i class="material-icons right {{actual.text_color}}" >settings</i></a></li>
 </ul>
 

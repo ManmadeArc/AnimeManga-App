@@ -7,9 +7,9 @@
 
     <div class="row ">
       <div class="cols s12">
-         <ul class="tabs fixed-tabs">
+         <ul class="tabs tabs-fixed-width {{actual.bg_1}}">
          {% for server in Servers  %}
-            <li class="tab" ><a class= "{{actual.text_color}}" href="#{{server.title}}">{{server.title}}</a></li>
+            <li class="tab" ><a  class="{{actual.text_color}}"href="#{{server.title}}">{{server.title}}</a></li>
          {% endfor %}
          </ul>
       </div>
@@ -29,6 +29,10 @@
 
   {% endblock%}
 {% block scripts %}
-  <script type="text/javascript" src="static/js/tabs.js"></script>
+   <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      var instances = M.AutoInit();
+      });
+  </script>
  
 {% endblock %}

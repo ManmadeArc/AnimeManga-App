@@ -33,13 +33,21 @@ def main_page():
 @app.route("/Anime")
 def anime_page():
     global owo
-    return render_template("anime.jinja",actual=db.get_theme_data(),data=owo.act_data(),refresh_A=True)
+    return render_template("anime.jinja",actual=db.get_theme_data(),data=owo.act_data(),refresh_A=True,searchA=True)
 
 @app.route("/Anime/refresh")
 def anime_refresh():
     global owo
     owo.refresh_data()
     return redirect(url_for('anime_page'))
+
+@app.route("/Anime/search")
+def anime_search():
+    
+    change = request.args.get('search')
+    owo.search_Anime(change)
+    return render_template("results.jinja",actual=db.get_theme_data(),results=owo.search["search"],searchA=True)
+
 
 @app.route("/Watch/<path:path>")
 def anime_video(path):
@@ -72,6 +80,7 @@ def set_setting():
             db.savetheme(val)
     
     return redirect(url_for('config_page'))
+
 
 
 app.run(debug=True)

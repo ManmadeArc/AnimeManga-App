@@ -1,0 +1,36 @@
+{% extends "template.jinja" %}
+
+{% block content %}
+
+  <div class="container ">
+        <div class= "center-align">
+            <h4>Ultimos Animes Agregados</h4>
+
+            {% for result in results  %}
+                <a href="/Watch/" class="{{actual.text_color}}"> 
+                
+                <div class="col s12 m7">
+                    <div class="card horizontal">
+                    <div class="card-image">
+                          <img src="data:image/png;base64,{{result.poster}}" alt="{{result.title}}" />
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content {{actual.bg_1}}">
+                        <h5>{{result.title}}</h5>
+                        <div>
+                        <div class="card-content {{actual.bg_1}}">
+                        <h4> Sinopsis</h4>
+                        <h5>{{result.synopsis}} </h5>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </a>
+            {% endfor %}
+        
+        
+        </div>
+    </div>
+
+{% endblock  %}

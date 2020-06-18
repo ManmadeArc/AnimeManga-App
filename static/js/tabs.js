@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded",function(){
-   const myTabs=document.getElemenyByClassName('tabs')
-   M.Tabs.init(myTabs,{});
-
+   var elem = document.querySelectorAll('.tabs'); 
+   var instance = M.AutoInit();
 });
 
