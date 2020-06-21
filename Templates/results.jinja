@@ -10,9 +10,9 @@
                 <a href="/Anime/Episodes/{{result.title}}" class="{{actual.text_color}}"> 
                 
                 <div class="col s12 m7">
-                    <div class="card horizontal">
-                    <div class="card-image">
-                          <img src="data:image/png;base64,{{result.poster}}" alt="{{result.title}}" />
+                    <div class="card small horizontal">
+                    <div class="card-image ">
+                          <img src="data:image/png;base64,{{result.poster}}" alt="{{result.title}}" style="max-width: none; width: fit-content;" />
                     </div>
                     <div class="card-stacked">
                         <div class="card-content {{actual.bg_1}}">
@@ -23,8 +23,14 @@
                         <h5>{{result.synopsis}} </h5>
                         </div>
                         </div>
+                        <div class="card-action">
+                        <a href="#">This is a link</a>
+                        <a href="#">This is a link</a>
+                        </div>
                     </div>
+                    
                     </div>
+                    
                 </div>
                 </a>
             {% endfor %}

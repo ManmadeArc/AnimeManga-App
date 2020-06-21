@@ -1,49 +1,43 @@
 {
     "servers": [
         {
-            "server": "natsuki",
-            "title": "Natsuki",
+            "server": "amus",
+            "title": "Izanagi",
             "allow_mobile": true,
-            "code": "https://s1.animeflv.net/embed.php?s=natsuki&v=S0V0UkZMdWRTa0NjNVR2dk9DMEo5U3ZpZUNPR1NBZW8vdG5XNzRQU1U2dFVlMzRwTy9RSmd1dDhmNXZtMEtHN1J6RHJrYVlhZUppOUlUaEtRdUhMR1FMRCtTamRucDdPNmpxby9qT2FIckFPUUxpdDh4SzRPaHp4Sk9DS29OckUzSW1TUXRZWGcwblNWY2tvUXFZU3pnPT0="
+            "code": "https://s1.animeflv.net/embed.php?s=izanagi&v=S0Z4QzJDWWRVbE1jY1VwSEFkU0NFSjJ0eDdtbDdIK0R5V3Y0TWNUVTE3bUVtZlJEd3ZKTjJsNFpqeW9ZWVRjNkpRWDBwU0VKZ3djU1hnZXM0bi9CNjlHdlYzNERDa1orY2RZT2FzTGtCYUh5OVB0a1NRa1lwdWNrc3BFeUJsT0pBTStGc29zcjdVK1NyNldCUjhKbUxBPT0="
         },
         {
             "server": "fembed",
             "title": "Fembed",
             "allow_mobile": true,
-            "code": "https://embedsito.com/v/my6x-u54-4x-epz"
+            "code": "https://embedsito.com/v/dw9rk6pnpog"
         },
         {
             "server": "mega",
             "title": "MEGA",
-            "url": "https://mega.nz/#!ujoX1JRZ!OFy_oDw5fRbt0bhiUADaQIEFsCTfQ7u7EVArr9iYkfI",
+            "url": "https://mega.nz/#!QlpR3KIA!3_WfYZIQurqVKabwWU2lhVSsLvIEt-5qYbsO2OYfeIU",
             "allow_mobile": true,
-            "code": "https://mega.nz/embed#!ujoX1JRZ!OFy_oDw5fRbt0bhiUADaQIEFsCTfQ7u7EVArr9iYkfI"
+            "code": "https://mega.nz/embed#!QlpR3KIA!3_WfYZIQurqVKabwWU2lhVSsLvIEt-5qYbsO2OYfeIU"
         },
         {
             "server": "okru",
             "title": "Okru",
             "allow_mobile": true,
-            "code": "https://ok.ru/videoembed/1382045452996"
+            "code": "https://ok.ru/videoembed/277975141041"
         },
         {
             "server": "yu",
             "title": "YourUpload",
             "allow_mobile": true,
-            "code": "https://www.yourupload.com/embed/q76HkW1P124g"
-        },
-        {
-            "server": "maru",
-            "title": "Maru",
-            "allow_mobile": true,
-            "code": "https://my.mail.ru/video/embed/8995617145282895199#budyak.rus#7519"
+            "code": "https://www.yourupload.com/embed/ofN8224k53TS"
         },
         {
             "server": "netu",
             "title": "Netu",
             "allow_mobile": true,
-            "code": "https://hqq.tv/player/embed_player.php?vid=VGt1UHlTeUc0aSt6UE5OWXgxU291dz09"
+            "code": "https://hqq.tv/player/embed_player.php?vid=UW1ZbmRaYmI0WWFxaTBQZVB4eEtzZz09"
         }
     ],
-    "title": "Haikyuu!!: To the Top",
-    "episode": "1"
+    "title": "",
+    "episode": ""
 }

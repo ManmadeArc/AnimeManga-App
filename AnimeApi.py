@@ -52,11 +52,11 @@ class AnimeFlv():
                 self.Episodes=epiList
                 self.Episodes['episodes'].pop(0)
     
-    def get_servers_id(self,id,title, episode):
+    def get_servers_id(self,id):
         servers=requests.get("https://animeflv.chrismichael.now.sh/api/v1/GetAnimeServers/"+str(id))
         self.servers=servers.json()
-        self.servers['title']=unquote(title)
-        self.servers['episode']=episode
+        self.servers['title']=""
+        self.servers['episode']=""
         with open('search.json', 'w') as file:
             json.dump(self.servers, file, indent=4)
        
