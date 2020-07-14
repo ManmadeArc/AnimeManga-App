@@ -25,9 +25,9 @@
                         </div>
                         <div class="card-action">
                         {% if result.title in Favorites %}
-                            <a href="/Add/Favorites/{{result.id}}/{{result.title}}">Remove Favorites</a>
+                            <a href="/Remove/Favorites/{{result.title}}">Remove Favorites</a>
                         {% else %}
-                            <a href="/Add/Favorites/{{result.id}}/{{result.title}}">Add Favorites</a>
+                            <a href="/Add/Favorites/{{result.title}}">Add Favorites</a>
                         {% endif %}
                         
                         </div>

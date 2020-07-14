@@ -59,6 +59,18 @@ class AnimeFlv():
         self.servers['episode']=""
         with open('search.json', 'w') as file:
             json.dump(self.servers, file, indent=4)
+    
+    def verify_name(self,name):
+        print(name)
+        caracteres="abcdefghijklmnopqrstuvwxyz1234567890"
+        palabra=list(name)
+        x=0
+        for i in palabra:
+            if i.lower() not in caracteres:
+                palabra[x]=' '
+            x= x+1
+        palabra=''.join(palabra)
+        return palabra
        
 
 

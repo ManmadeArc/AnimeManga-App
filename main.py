@@ -14,8 +14,11 @@ from flaskwebgui import FlaskUI
 
 from config_file import (FlaskConfig, Config)
 
+from urllib.parse import unquote
+
 import json, db, AnimeApi
 import requests
+
 
 
 
@@ -34,7 +37,8 @@ def main_page():
 @app.route("/Anime")
 def anime_page():
     global owo
-    return render_template("anime.jinja",actual=db.get_theme_data(),data=owo.act_data(),refresh_A=True,searchA=True)
+    return render_template("anime.jinja",actual=db.get_theme_data(),data=owo.act_data(),
+                            refresh_A=True,searchA=True)
 
 @app.route("/Anime/refresh")
 def anime_refresh():
@@ -49,8 +53,12 @@ def anime_search():
         change = request.args.get('search')
         owo.search_Anime(change)
     except:
-        return render_template("results.jinja",actual=db.get_theme_data(),results=owo.search["search"],searchA=True)
-    return render_template("results.jinja",actual=db.get_theme_data(),results=owo.search["search"],searchA=True)
+        return render_template("results.jinja",actual=db.get_theme_data(),
+                                results=owo.search["search"],searchA=True,
+                                Favorites=db.get_favorites())
+    return render_template("results.jinja",actual=db.get_theme_data(),
+                            results=owo.search["search"],searchA=True,
+                            Favorites=db.get_favorites())
 
 
 @app.route("/Watch/<path:path>")
@@ -61,43 +69,58 @@ def anime_video(path):
     AnimeInfo=owo.Act_Ep
     xd = owo.Act_servers
 
-    return render_template("servers.jinja",actual=db.get_theme_data(), Servers=xd, Anime=AnimeInfo )
+    return render_template("servers.jinja",actual=db.get_theme_data(),
+                            Servers=xd, Anime=AnimeInfo )
 
 @app.route("/Anime/Episodes/<path:path>")
 def anime_eps(path):
     global owo
     owo.get_episodes(path)
-    return render_template("anime_epi_list.jinja", actual=db.get_theme_data(), DATA=owo.Episodes)
+    return render_template("anime_epi_list.jinja", actual=db.get_theme_data(),
+                            DATA=owo.Episodes)
 
 
 @app.route("/Watch/ID/<path:idx>")
 def watch_anime(idx):
     global owo
     owo.get_servers_id(idx)
-    return render_template("servers.jinja",actual=db.get_theme_data(), Servers=owo.servers['servers'], Anime=owo.servers )
+    return render_template("servers.jinja",actual=db.get_theme_data(), 
+                            Servers=owo.servers['servers'], Anime=owo.servers )
 
-@app.route("/Add/Favorites/<path:idx>")
-def save_anime(idx):
-    print(idx)
-    anime= requests.get("https://animeflv.chrismichael.now.sh/api/v1/GetAnimeInfo/"+idx).json()
-    anime=anime['info']
-    anime.append("")
-    print(anime)
-    if anime[0] != "":
-        anime=anime[0]
-        db.add_favorites(anime['id'],anime['title'])
-    return redirect(url_for(anime_search))
+@app.route("/Add/Favorites/<path:title>")
+def save_anime(title):
+    global owo
+    query=unquote(title)
+    querys=owo.verify_name(query)
 
-@app.route("/Remove/Favorites/")
-def delete_anime():
-    pass
+    anime= requests.get("https://animeflv.chrismichael.now.sh/api/v1/Search/"+str(querys))
+    anime=anime.json()
+    requested={}
+    for results in anime['search']:
+        if  results['title'] ==query:
+            requested=results
+            break
+    db.add_favorites(requested['title'], requested['poster'])
+    return render_template("results.jinja",actual=db.get_theme_data(),
+                            results=owo.search["search"],searchA=True,
+                            Favorites=db.get_favorites())
+
+@app.route("/Remove/Favorites/<path:title>")
+def delete_anime(title):
+    query=unquote(title)
+    db.remove_favorites(query)
+    return render_template("results.jinja",actual=db.get_theme_data(),
+                            results=owo.search["search"],searchA=True,
+                            Favorites=db.get_favorites())
+    
 @app.route("/Manga")
 def manga_page():
     return render_template("manga.jinja",actual=db.get_theme_data() )
 
 @app.route("/Config")
 def config_page():
-    return render_template("Config.jinja", themes=Config.theme, theme=db.get_theme(), actual=db.get_theme_data())
+    return render_template("Config.jinja", themes=Config.theme, 
+                            theme=db.get_theme(), actual=db.get_theme_data())
 
 @app.route('/set', methods=['POST'])
 def set_setting():

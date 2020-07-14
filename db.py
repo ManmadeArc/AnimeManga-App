@@ -23,22 +23,35 @@ def get_theme_data():
     x = get_theme()
     return config_file.Config.theme[x]
 
-def add_favorites(idx, title):
-     
-    with open('default.json','a') as file:
-            data = json.load(file)
-            anime={}
-            anime["id"]=idx
-            anime["title"]=title
-            data["favorites"].append(anime)
-            json.dump(data, file, indent=4)
+def add_favorites(img, title):
+    data=[]
+    with open('default.json','r+') as file:
+        data = json.load(file)
+        anime={}
+        anime["img"]=img
+        anime["title"]=title
+        data["favorites"].append(anime)
+    
+    with open('default.json','w') as file:
+        json.dump(data, file, indent=4)
 
 def remove_favorites(title):
-    with open('default.json','a') as file:
+    data=[]
+    with open('default.json','r') as file:
         data=json.load(file)
         anime=data['favorites']
         for i in range(len(anime)):
             if anime[i]['title']== title:
                 anime.pop(i)
+                break
         data['favorites'] = anime
+    with open('default.json','w') as file:
         json.dump(data, file, indent=4)
+
+def get_favorites():
+    with open('default.json','r+') as file:
+        data = json.load(file)
+        favList=[]
+        for anime in data["favorites"]:
+            favList.append(anime['title'])
+    return favList
