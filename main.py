@@ -15,6 +15,7 @@ from flaskwebgui import FlaskUI
 from config_file import (FlaskConfig, Config)
 
 import json, db, AnimeApi
+import requests
 
 
 
@@ -43,8 +44,12 @@ def anime_refresh():
 
 @app.route("/Anime/search")
 def anime_search():
-    change = request.args.get('search')
-    owo.search_Anime(change)
+    global owo
+    try:
+        change = request.args.get('search')
+        owo.search_Anime(change)
+    except:
+        return render_template("results.jinja",actual=db.get_theme_data(),results=owo.search["search"],searchA=True)
     return render_template("results.jinja",actual=db.get_theme_data(),results=owo.search["search"],searchA=True)
 
 
@@ -71,8 +76,21 @@ def watch_anime(idx):
     owo.get_servers_id(idx)
     return render_template("servers.jinja",actual=db.get_theme_data(), Servers=owo.servers['servers'], Anime=owo.servers )
 
+@app.route("/Add/Favorites/<path:idx>")
+def save_anime(idx):
+    print(idx)
+    anime= requests.get("https://animeflv.chrismichael.now.sh/api/v1/GetAnimeInfo/"+idx).json()
+    anime=anime['info']
+    anime.append("")
+    print(anime)
+    if anime[0] != "":
+        anime=anime[0]
+        db.add_favorites(anime['id'],anime['title'])
+    return redirect(url_for(anime_search))
 
-
+@app.route("/Remove/Favorites/")
+def delete_anime():
+    pass
 @app.route("/Manga")
 def manga_page():
     return render_template("manga.jinja",actual=db.get_theme_data() )
@@ -96,5 +114,5 @@ def set_setting():
 
 
 
-app.run(host='192.168.31.155')
+app.run(debug=True)
 #ui.run()

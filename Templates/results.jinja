@@ -9,7 +9,7 @@
             {% for result in results  %}
                 <a href="/Anime/Episodes/{{result.title}}" class="{{actual.text_color}}"> 
                 
-                <div class="col s12 m7">
+                <div class="col s12 m6">
                     <div class="card small horizontal">
                     <div class="card-image ">
                           <img src="data:image/png;base64,{{result.poster}}" alt="{{result.title}}" style="max-width: none; width: fit-content;" />
@@ -24,8 +24,12 @@
                         </div>
                         </div>
                         <div class="card-action">
-                        <a href="#">This is a link</a>
-                        <a href="#">This is a link</a>
+                        {% if result.title in Favorites %}
+                            <a href="/Add/Favorites/{{result.id}}/{{result.title}}">Remove Favorites</a>
+                        {% else %}
+                            <a href="/Add/Favorites/{{result.id}}/{{result.title}}">Add Favorites</a>
+                        {% endif %}
+                        
                         </div>
                     </div>
                     
