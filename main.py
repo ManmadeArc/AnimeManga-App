@@ -80,6 +80,7 @@ def anime_eps(path):
                             DATA=owo.Episodes)
 
 
+
 @app.route("/Watch/ID/<path:idx>")
 def watch_anime(idx):
     global owo
@@ -109,9 +110,21 @@ def save_anime(title):
 def delete_anime(title):
     query=unquote(title)
     db.remove_favorites(query)
+    try:
+        return render_template("results.jinja",actual=db.get_theme_data(),
+                                results=owo.search["search"],searchA=True,
+                                Favorites=db.get_favorites())
+    except:
+        return render_template("results.jinja",actual=db.get_theme_data(),
+                                results=db.get_favorites_full_data(),searchA=True,
+                                Favorites=db.get_favorites())
+
+@app.route("/Anime/Favorites")
+def favorite_animes():
     return render_template("results.jinja",actual=db.get_theme_data(),
-                            results=owo.search["search"],searchA=True,
+                            results=db.get_favorites_full_data(),searchA=True,
                             Favorites=db.get_favorites())
+
     
 @app.route("/Manga")
 def manga_page():

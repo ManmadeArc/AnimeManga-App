@@ -15,8 +15,13 @@
                 </ul>
             <ul class="left">
             <a href="#" data-target="mobile-demo" class="sidenav-trigger" ><i class="material-icons">menu</i></a>
+            {% if  searchA %}
+            <li> <a href="/Anime/Favorites"><i class="material-icons">favorite</i></a></li>
+            {% endif %}
         </ul>
                     {% if  searchA %}
+                    
+
                     <div class="nav-content  {{actual.accent}}">
                         <li style="color: transparent;">
                         <form action="{{ url_for('anime_search')}}">
@@ -28,6 +33,7 @@
                         </form>
                         </li>
                         </div>
+                        <br>
                     {% endif %}
 
 
