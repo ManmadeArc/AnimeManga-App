@@ -30,6 +30,8 @@ ui = FlaskUI(app=app, width=768, height=800)
 owo=AnimeApi.AnimeFlv()
 owo.refresh_data()
 
+actualpage=False
+
 @app.route("/")
 def main_page():
     return render_template("main.jinja",actual=db.get_theme_data())
@@ -49,6 +51,8 @@ def anime_refresh():
 @app.route("/Anime/search")
 def anime_search():
     global owo
+    global actualpage
+    actualpage=True
     try:
         change = request.args.get('search')
         owo.search_Anime(change)
@@ -93,7 +97,8 @@ def save_anime(title):
     global owo
     query=unquote(title)
     querys=owo.verify_name(query)
-
+    print(query)
+    print(querys)
     anime= requests.get("https://animeflv.chrismichael.now.sh/api/v1/Search/"+str(querys))
     anime=anime.json()
     requested={}
@@ -101,6 +106,9 @@ def save_anime(title):
         if  results['title'] ==query:
             requested=results
             break
+    print(requested)
+    print()
+    print(anime)
     db.add_favorites(requested['title'], requested['poster'])
     return render_template("results.jinja",actual=db.get_theme_data(),
                             results=owo.search["search"],searchA=True,
@@ -110,17 +118,20 @@ def save_anime(title):
 def delete_anime(title):
     query=unquote(title)
     db.remove_favorites(query)
-    try:
+    global actualpage
+    if actualpage:
         return render_template("results.jinja",actual=db.get_theme_data(),
                                 results=owo.search["search"],searchA=True,
                                 Favorites=db.get_favorites())
-    except:
+    else:
         return render_template("results.jinja",actual=db.get_theme_data(),
                                 results=db.get_favorites_full_data(),searchA=True,
                                 Favorites=db.get_favorites())
 
 @app.route("/Anime/Favorites")
 def favorite_animes():
+    global actualpage
+    actualpage=False
     return render_template("results.jinja",actual=db.get_theme_data(),
                             results=db.get_favorites_full_data(),searchA=True,
                             Favorites=db.get_favorites())
