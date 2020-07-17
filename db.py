@@ -23,7 +23,7 @@ def get_theme_data():
     x = get_theme()
     return config_file.Config.theme[x]
 
-def add_favorites(img, title):
+def add_favorites(title, img):
     data=[]
     with open('default.json','r+') as file:
         data = json.load(file)
