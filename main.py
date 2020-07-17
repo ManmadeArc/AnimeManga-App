@@ -28,7 +28,7 @@ app.config.from_object(FlaskConfig)
 ui = FlaskUI(app=app, width=768, height=800)
 
 owo=AnimeApi.AnimeFlv()
-owo.refresh_data()
+
 
 @app.route("/")
 def main_page():

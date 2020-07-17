@@ -1,0 +1,4 @@
+
+*.pyc
+*.json
+__pycache__/main.cpython-38.pyc
