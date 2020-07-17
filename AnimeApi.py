@@ -47,10 +47,23 @@ class AnimeFlv():
 
 
     def get_episodes(self,id):
-        for epiList in self.search['search']:
-            if epiList.get('title') == id:
-                self.Episodes=epiList
-                self.Episodes['episodes'].pop(0)
+        
+        completed=False
+
+        while not completed:
+            try:
+                for epiList in self.search['search']:
+                    if epiList.get('title') == id:
+                        self.Episodes=epiList
+                        self.Episodes['episodes'].pop(0)
+                        completed=True
+            except:
+                self.search_Anime(id)
+            if not completed:
+                self.search_Anime(id)
+
+        
+
     
     def get_servers_id(self,id):
         servers=requests.get("https://animeflv.chrismichael.now.sh/api/v1/GetAnimeServers/"+str(id))
@@ -61,7 +74,7 @@ class AnimeFlv():
             json.dump(self.servers, file, indent=4)
     
     def verify_name(self,name):
-        print(name)
+        (name)
         caracteres="abcdefghijklmnopqrstuvwxyz1234567890"
         palabra=list(name)
         x=0

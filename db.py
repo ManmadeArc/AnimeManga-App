@@ -28,7 +28,7 @@ def add_favorites(title, img):
     with open('default.json','r+') as file:
         data = json.load(file)
         anime={}
-        anime["img"]=img
+        anime["poster"]=img
         anime["title"]=title
         data["favorites"].append(anime)
     
@@ -55,3 +55,11 @@ def get_favorites():
         for anime in data["favorites"]:
             favList.append(anime['title'])
     return favList
+
+def get_favorites_full_data():
+    data=[]
+    with open('default.json','r+') as file:
+        data = json.load(file)
+    for anime in data["favorites"]:
+            anime['synopsis']=''
+    return data["favorites"]

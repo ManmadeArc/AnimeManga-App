@@ -1,41 +1,41 @@
 {
     "servers": [
         {
-            "server": "amus",
-            "title": "Izanagi",
+            "server": "natsuki",
+            "title": "Natsuki",
             "allow_mobile": true,
-            "code": "https://s1.animeflv.net/embed.php?s=izanagi&v=S0Z4QzJDWWRVbE1jY1VwSEFkU0NFSjJ0eDdtbDdIK0R5V3Y0TWNUVTE3bUVtZlJEd3ZKTjJsNFpqeW9ZWVRjNkpRWDBwU0VKZ3djU1hnZXM0bi9CNjlHdlYzNERDa1orY2RZT2FzTGtCYUh5OVB0a1NRa1lwdWNrc3BFeUJsT0pBTStGc29zcjdVK1NyNldCUjhKbUxBPT0="
+            "code": "https://s1.streamium.xyz/embed.php?s=natsuki&v=dFF3VFFqYVBueUZJaGI3TlZLS3ZwOTIzT0VpVkxsbXlOYnVMaG90WlFhNkRwTGFhWjU3clhvaUlsMTNNYkJKQTBlbUlyODBGVWlScVBNb2dscGx5R2ZRVVQrbmZHZjdBMGpJWk9xOVRIQ2ZWMGIzN0tSUVc2bDFBOVBITW91NVg="
         },
         {
             "server": "fembed",
             "title": "Fembed",
             "allow_mobile": true,
-            "code": "https://embedsito.com/v/dw9rk6pnpog"
+            "code": "https://embedsito.com/v/8pyd0f8pqe5yrqy"
         },
         {
             "server": "mega",
             "title": "MEGA",
-            "url": "https://mega.nz/#!QlpR3KIA!3_WfYZIQurqVKabwWU2lhVSsLvIEt-5qYbsO2OYfeIU",
+            "url": "https://mega.nz/#!PlRhkSbb!u7uD1O9wnyMRJ8uSg5Jafv6jhGEGVbVVItmUSd-T11U",
             "allow_mobile": true,
-            "code": "https://mega.nz/embed#!QlpR3KIA!3_WfYZIQurqVKabwWU2lhVSsLvIEt-5qYbsO2OYfeIU"
+            "code": "https://mega.nz/embed#!PlRhkSbb!u7uD1O9wnyMRJ8uSg5Jafv6jhGEGVbVVItmUSd-T11U"
         },
         {
             "server": "okru",
             "title": "Okru",
             "allow_mobile": true,
-            "code": "https://ok.ru/videoembed/277975141041"
+            "code": "https://ok.ru/videoembed/2064687303410"
         },
         {
             "server": "yu",
             "title": "YourUpload",
             "allow_mobile": true,
-            "code": "https://www.yourupload.com/embed/ofN8224k53TS"
+            "code": "https://www.yourupload.com/embed/17ypms35B8B2"
         },
         {
-            "server": "netu",
-            "title": "Netu",
+            "server": "maru",
+            "title": "Maru",
             "allow_mobile": true,
-            "code": "https://hqq.tv/player/embed_player.php?vid=UW1ZbmRaYmI0WWFxaTBQZVB4eEtzZz09"
+            "code": "https://my.mail.ru/video/embed/8995617145282896273#budyak.rus#8593"
         }
     ],
     "title": "",
