@@ -1,41 +1,28 @@
 {
     "servers": [
         {
-            "server": "amus",
-            "title": "Izanagi",
-            "allow_mobile": true,
-            "code": "https://s1.animeflv.net/embed.php?s=izanagi&v=S0Z4QzJDWWRVbE1jY1VwSEFkU0NFSjJ0eDdtbDdIK0R5V3Y0TWNUVTE3bUVtZlJEd3ZKTjJsNFpqeW9ZWVRjNkpRWDBwU0VKZ3djU1hnZXM0bi9CNjlHdlYzNERDa1orY2RZT2FzTGtCYUh5OVB0a1NRa1lwdWNrc3BFeUJsT0pBTStGc29zcjdVK1NyNldCUjhKbUxBPT0="
-        },
-        {
-            "server": "fembed",
             "title": "Fembed",
-            "allow_mobile": true,
-            "code": "https://embedsito.com/v/dw9rk6pnpog"
+            "code": "https://www.fembed.com/v/7z9-ywl32vx"
         },
         {
-            "server": "mega",
-            "title": "MEGA",
-            "url": "https://mega.nz/#!QlpR3KIA!3_WfYZIQurqVKabwWU2lhVSsLvIEt-5qYbsO2OYfeIU",
-            "allow_mobile": true,
-            "code": "https://mega.nz/embed#!QlpR3KIA!3_WfYZIQurqVKabwWU2lhVSsLvIEt-5qYbsO2OYfeIU"
+            "title": "Mega",
+            "code": "https://mega.nz/embed#!bGhwnJbR!AB16GQCwwwALHUVrc5RVqwDeMxYAjoKFC3szN3OzJG0"
         },
         {
-            "server": "okru",
-            "title": "Okru",
-            "allow_mobile": true,
-            "code": "https://ok.ru/videoembed/277975141041"
+            "title": "Amus",
+            "code": "https://v.tioanime.com/embed.php?s=amus&v=NXpzdUFiT0VzT1FMSXhBQURobXZhOEIxcHVKcStOaXhZeWVUNHVrVkJGb3djNWgybFdxZ3FjLzVSY2VGdGhoNkZUV2FPWTMzRTZURk1lOGdQM1dNUWNOUmNmbWoxY3F2ZE5mU2JyWEVLVlE9"
         },
         {
-            "server": "yu",
+            "title": "Mepu",
+            "code": "https://v.tioanime.com/embed.php?s=mepu&v=RDJoNTJ1OURqM0VrZ1RJbFlTUVNpbmtLZ1pkTG1PRUVGeEc1Vm5lb0lCdz0="
+        },
+        {
             "title": "YourUpload",
-            "allow_mobile": true,
-            "code": "https://www.yourupload.com/embed/ofN8224k53TS"
+            "code": "https://www.yourupload.com/embed/Pa73cs3E08JT"
         },
         {
-            "server": "netu",
             "title": "Netu",
-            "allow_mobile": true,
-            "code": "https://hqq.tv/player/embed_player.php?vid=UW1ZbmRaYmI0WWFxaTBQZVB4eEtzZz09"
+            "code": "https://hqq.tv/player/embed_player.php?vid=231271255245254258261233228277232234194271217261258"
         }
     ],
     "title": "",

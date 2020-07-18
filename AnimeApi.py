@@ -1,6 +1,7 @@
 import requests
 import json
 import copy as cp
+import tioanime
 from urllib.parse import unquote
 
 
@@ -15,10 +16,8 @@ class AnimeFlv():
 
 
     def refresh_data(self):
-        animes= requests.get("https://animeflv.chrismichael.now.sh/api/v1/LatestEpisodesAdded")
-        while int(animes.status_code) != 200:
-            animes= requests.get("https://animeflv.chrismichael.now.sh/api/v1/LatestEpisodesAdded")     
-        self.data= animes.json()
+        animes=tioanime.get_latest_episodes()    
+        self.data=animes
 
     def get_anime_titles(self):
         animelist = []
@@ -41,9 +40,9 @@ class AnimeFlv():
         self.Act_servers= Data.get('servers',[])
     
     def search_Anime(self,Anime):
-        aniList=requests.get("https://animeflv.chrismichael.now.sh/api/v1/Search/"+str(Anime))
+        aniList=tioanime.search(Anime)
         
-        self.search=aniList.json()
+        self.search=aniList
 
 
     def get_episodes(self,id):
@@ -66,8 +65,7 @@ class AnimeFlv():
 
     
     def get_servers_id(self,id):
-        servers=requests.get("https://animeflv.chrismichael.now.sh/api/v1/GetAnimeServers/"+str(id))
-        self.servers=servers.json()
+        self.servers=tioanime.get_servers(id,True)
         self.servers['title']=""
         self.servers['episode']=""
         with open('search.json', 'w') as file:

@@ -16,7 +16,7 @@ from config_file import (FlaskConfig, Config)
 
 from urllib.parse import unquote
 
-import json, db, AnimeApi
+import json, db, AnimeApi, tioanime
 import requests
 
 
@@ -28,6 +28,7 @@ app.config.from_object(FlaskConfig)
 ui = FlaskUI(app=app, width=768, height=800)
 
 owo=AnimeApi.AnimeFlv()
+owo.refresh_data()
 
 
 @app.route("/")
@@ -63,12 +64,14 @@ def anime_search():
 
 @app.route("/Watch/<path:path>")
 def anime_video(path):
-    f=path
+    f="/"+path
     global owo
     owo.get_recent_servers(f)
+    
     AnimeInfo=owo.Act_Ep
+    
     xd = owo.Act_servers
-
+    
     return render_template("servers.jinja",actual=db.get_theme_data(),
                             Servers=xd, Anime=AnimeInfo )
 
@@ -84,7 +87,7 @@ def anime_eps(path):
 @app.route("/Watch/ID/<path:idx>")
 def watch_anime(idx):
     global owo
-    owo.get_servers_id(idx)
+    owo.get_servers_id("/"+idx)
     return render_template("servers.jinja",actual=db.get_theme_data(), 
                             Servers=owo.servers['servers'], Anime=owo.servers )
 
