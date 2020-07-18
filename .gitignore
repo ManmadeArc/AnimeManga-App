@@ -2,3 +2,6 @@
 *.pyc
 *.json
 __pycache__/main.cpython-38.pyc
+*.pyc
+__pycache__/AnimeApi.cpython-38.pyc
+__pycache__/main.cpython-38.pyc
