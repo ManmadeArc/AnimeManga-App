@@ -29,7 +29,7 @@ ui = FlaskUI(app=app, width=768, height=800)
 
 owo=AnimeApi.AnimeFlv()
 owo.refresh_data()
-
+completed= False
 
 @app.route("/")
 def main_page():
@@ -50,6 +50,8 @@ def anime_refresh():
 @app.route("/Anime/search")
 def anime_search():
     global owo
+    global completed
+    completed = False
     try:
         change = request.args.get('search')
         owo.search_Anime(change)
@@ -95,10 +97,7 @@ def watch_anime(idx):
 def save_anime(title):
     global owo
     query=unquote(title)
-    querys=owo.verify_name(query)
-
-    anime= requests.get("https://animeflv.chrismichael.now.sh/api/v1/Search/"+str(querys))
-    anime=anime.json()
+    anime=owo.search
     requested={}
     for results in anime['search']:
         if  results['title'] ==query:
@@ -113,17 +112,19 @@ def save_anime(title):
 def delete_anime(title):
     query=unquote(title)
     db.remove_favorites(query)
-    try:
+    if not completed:
         return render_template("results.jinja",actual=db.get_theme_data(),
                                 results=owo.search["search"],searchA=True,
                                 Favorites=db.get_favorites())
-    except:
+    else:
         return render_template("results.jinja",actual=db.get_theme_data(),
                                 results=db.get_favorites_full_data(),searchA=True,
                                 Favorites=db.get_favorites())
 
 @app.route("/Anime/Favorites")
 def favorite_animes():
+    global completed
+    completed = True
     return render_template("results.jinja",actual=db.get_theme_data(),
                             results=db.get_favorites_full_data(),searchA=True,
                             Favorites=db.get_favorites())

@@ -1,28 +1,28 @@
 {
     "servers": [
         {
-            "title": "Fembed",
-            "code": "https://www.fembed.com/v/7z9-ywl32vx"
+            "title": "Prime",
+            "code": "https://v.tioanime.com/embed.php?s=prime&v=cnlmV3BCSUExYndNNHlJbzF1Ymh6d3JOY2dERVlyM0tMWnJ5ZGJPOHBPTEN3V2RPZjRxRWsvMUVHNisvRE9jN2xVY3Y2VHVOVTNydFJNUmVMOVJQWnc9PQ=="
         },
         {
             "title": "Mega",
-            "code": "https://mega.nz/embed#!bGhwnJbR!AB16GQCwwwALHUVrc5RVqwDeMxYAjoKFC3szN3OzJG0"
+            "code": "https://mega.nz/embed#!fjRDnAjD!Tj6FiSUTIYi9l_1UTESRooTBd7eCs6dzyClc-hi3JJA"
         },
         {
-            "title": "Amus",
-            "code": "https://v.tioanime.com/embed.php?s=amus&v=NXpzdUFiT0VzT1FMSXhBQURobXZhOEIxcHVKcStOaXhZeWVUNHVrVkJGb3djNWgybFdxZ3FjLzVSY2VGdGhoNkZUV2FPWTMzRTZURk1lOGdQM1dNUWNOUmNmbWoxY3F2ZE5mU2JyWEVLVlE9"
-        },
-        {
-            "title": "Mepu",
-            "code": "https://v.tioanime.com/embed.php?s=mepu&v=RDJoNTJ1OURqM0VrZ1RJbFlTUVNpbmtLZ1pkTG1PRUVGeEc1Vm5lb0lCdz0="
+            "title": "Okru",
+            "code": "https://ok.ru/videoembed/1437516302927"
         },
         {
             "title": "YourUpload",
-            "code": "https://www.yourupload.com/embed/Pa73cs3E08JT"
+            "code": "https://www.yourupload.com/embed/Xr2v1Kv1x371"
+        },
+        {
+            "title": "Maru",
+            "code": "https://my.mail.ru/video/embed/9149163570439652636#tioanime#1308"
         },
         {
             "title": "Netu",
-            "code": "https://hqq.tv/player/embed_player.php?vid=231271255245254258261233228277232234194271217261258"
+            "code": "https://hqq.tv/player/embed_player.php?vid=WGZNN3A5bEk1Yk5QcVd1NE1DS202dz09"
         }
     ],
     "title": "",

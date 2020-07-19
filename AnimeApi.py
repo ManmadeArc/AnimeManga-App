@@ -68,8 +68,6 @@ class AnimeFlv():
         self.servers=tioanime.get_servers(id,True)
         self.servers['title']=""
         self.servers['episode']=""
-        with open('search.json', 'w') as file:
-            json.dump(self.servers, file, indent=4)
     
     def verify_name(self,name):
         (name)
