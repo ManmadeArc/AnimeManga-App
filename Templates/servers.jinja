@@ -16,14 +16,15 @@
     </div>
   
 
- <div >
+ <div class="container">
     {% for server in Servers  %}
          <div id="{{server.title}}" class="col s12 center video-container">
+            <br>
             <p>{{Anime.title}} Capitulo {{Anime.episode}}</p>
             <iframe width="560" height="315" frameborder="0" src="{{server.code}}" scrolling="no" allowfullscreen=""></iframe>
          </div>
     {% endfor %}
-   </div>
+   </div >
 
 
 

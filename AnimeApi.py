@@ -54,7 +54,6 @@ class AnimeFlv():
                 for epiList in self.search['search']:
                     if epiList.get('title') == id:
                         self.Episodes=epiList
-                        self.Episodes['episodes'].pop(0)
                         completed=True
             except:
                 self.search_Anime(id)

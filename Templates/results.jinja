@@ -11,27 +11,34 @@
                 
                 <div class="col s12 m6">
                     <div class="card small horizontal">
-                    <div class="card-image ">
-                          <img src="{{result.poster}}" alt="{{result.title}}" style="max-width: none; width: fit-content;" />
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content {{actual.bg_1}}">
-                        <h5>{{result.title}}</h5>
-                        <div>
-                        <div class="card-content {{actual.bg_1}}">
-                        <h4> Sinopsis</h4>
-                        <h5>{{result.synopsis}} </h5>
+                        <div class="card-image ">
+                            <img src="{{result.poster}}" alt="{{result.title}}" style="max-width: none; width: fit-content;" />
                         </div>
+                        <div class="card-stacked {{actual.bg_1}}">
+                            <div class="card-content {{actual.bg_1}}">
+                                <h5>{{result.title}}</h5>
+                                
+                
+                                    {% if result.synopsis != "" %}
+                                    <div class="card-content {{actual.bg_1}}">
+                                        <h4> Sinopsis</h4>
+                                        <h5>{{result.synopsis}} </h5>
+                                    </div>
+                                    {% else %}
+                                    {% endif %}
+                                
+                                
+                                </div>
+                                <div class="card-action">
+                                    {% if result.title in Favorites %}
+                                        <a href="/Remove/Favorites/{{result.title}}">Remove Favorites</a>
+                                    {% else %}
+                                        <a href="/Add/Favorites/{{result.title}}">Add Favorites</a>
+                                    {% endif %}
+                                </div>
+                            
+                            </div>
                         </div>
-                        <div class="card-action">
-                        {% if result.title in Favorites %}
-                            <a href="/Remove/Favorites/{{result.title}}">Remove Favorites</a>
-                        {% else %}
-                            <a href="/Add/Favorites/{{result.title}}">Add Favorites</a>
-                        {% endif %}
-                        
-                        </div>
-                    </div>
                     
                     </div>
                     
