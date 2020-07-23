@@ -2,7 +2,12 @@ import json
 import config_file
 
 def savetheme(value):
-    data={}
+    try:
+        with open("default.json", "r") as file:
+            data=json.load(file)
+    except:
+        data={}
+
     data["theme"]= value
     with open('default.json', 'w') as file:
         json.dump(data, file, indent=4)

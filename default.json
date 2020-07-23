@@ -1,3 +1,9 @@
 {
-    "theme": "red"
+    "theme": "nord",
+    "favorites": [
+        {
+            "poster": "https://tioanime.com/uploads/portadas/922.jpg",
+            "title": "Tamako Market"
+        }
+    ]
 }

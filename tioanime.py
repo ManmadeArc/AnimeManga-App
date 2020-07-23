@@ -12,7 +12,7 @@ def get_latest_episodes():
     episodes={}
     episodes['episodes']=[]
     for event in animes.items():
-        article={}
+        article={}  
         article['title']=event.find('article > a > h3').text()
         article['poster']=site + event.find('article > a > div > figure > img').attr("src")
         article['id']=event.find('article > a').attr("href")
