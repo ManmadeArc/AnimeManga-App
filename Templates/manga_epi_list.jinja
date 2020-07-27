@@ -1,0 +1,33 @@
+{% extends "template.jinja" %}
+
+{% block content %}
+
+  <div class="container ">
+        <div class= "center-align">
+            <h4>Lista de Episodios</h4>
+
+            {% for chapter in chapters  %}
+            
+            
+                <a href="/Manga/Read/{{chapter.link}}" class="{{actual.text_color}}"> 
+                
+                <div class="col s12 m7">
+                    <div class="card horizontal">
+                    
+                    <div class="card-stacked">
+                        <div class="card-content {{actual.bg_1}}">
+                        <h5>{{chapter.title}}</h5>
+                        
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </a>
+                
+            {% endfor %}
+        
+        
+        </div>
+    </div>
+
+{% endblock  %}

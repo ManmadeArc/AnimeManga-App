@@ -16,7 +16,7 @@ from config_file import (FlaskConfig, Config)
 
 from urllib.parse import unquote
 
-import json, db, AnimeApi, tioanime
+import json, db, AnimeApi, tioanime, MangaApi
 import requests
 
 
@@ -27,8 +27,10 @@ app.config.from_object(FlaskConfig)
 
 ui = FlaskUI(app=app, width=768, height=800)
 
-owo=AnimeApi.AnimeFlv()
-owo.refresh_data()
+Anime=AnimeApi.AnimeFlv()
+Anime.refresh_data()
+Manga=MangaApi.LectorTMO()
+Manga.get_populars()
 completed= False
 
 @app.route("/")
@@ -37,67 +39,67 @@ def main_page():
 
 @app.route("/Anime")
 def anime_page():
-    global owo
-    return render_template("anime.jinja",actual=db.get_theme_data(),data=owo.act_data(),
+    global Anime
+    return render_template("anime.jinja",actual=db.get_theme_data(),data=Anime.act_data(),
                             refresh_A=True,searchA=True)
 
 @app.route("/Anime/refresh")
 def anime_refresh():
-    global owo
-    owo.refresh_data()
+    global Anime
+    Anime.refresh_data()
     return redirect(url_for('anime_page'))
 
 @app.route("/Anime/search")
 def anime_search():
-    global owo
+    global Anime
     global completed
     completed = False
     try:
         change = request.args.get('search')
-        owo.search_Anime(change)
+        Anime.search_Anime(change)
     except:
         return render_template("results.jinja",actual=db.get_theme_data(),
-                                results=owo.search["search"],searchA=True,
+                                results=Anime.search["search"],searchA=True,
                                 Favorites=db.get_favorites())
     return render_template("results.jinja",actual=db.get_theme_data(),
-                            results=owo.search["search"],searchA=True,
+                            results=Anime.search["search"],searchA=True,
                             Favorites=db.get_favorites())
 
 
 @app.route("/Watch/<path:path>")
 def anime_video(path):
     f="/"+path
-    global owo
-    owo.get_recent_servers(f)
+    global Anime
+    Anime.get_recent_servers(f)
     
-    AnimeInfo=owo.Act_Ep
+    AnimeInfo=Anime.Act_Ep
     
-    xd = owo.Act_servers
+    xd = Anime.Act_servers
     
     return render_template("servers.jinja",actual=db.get_theme_data(),
                             Servers=xd, Anime=AnimeInfo )
 
 @app.route("/Anime/Episodes/<path:path>")
 def anime_eps(path):
-    global owo
-    owo.get_episodes(path)
+    global Anime
+    Anime.get_episodes(path)
     return render_template("anime_epi_list.jinja", actual=db.get_theme_data(),
-                            DATA=owo.Episodes)
+                            DATA=Anime.Episodes)
 
 
 
 @app.route("/Watch/ID/<path:idx>")
 def watch_anime(idx):
-    global owo
-    owo.get_servers_id("/"+idx)
+    global Anime
+    Anime.get_servers_id("/"+idx)
     return render_template("servers.jinja",actual=db.get_theme_data(), 
-                            Servers=owo.servers['servers'], Anime=owo.servers )
+                            Servers=Anime.servers['servers'], Anime=Anime.servers )
 
 @app.route("/Add/Favorites/<path:title>")
 def save_anime(title):
-    global owo
+    global Anime
     query=unquote(title)
-    anime=owo.search
+    anime=Anime.search
     requested={}
     for results in anime['search']:
         if  results['title'] ==query:
@@ -105,7 +107,7 @@ def save_anime(title):
             break
     db.add_favorites(requested['title'], requested['poster'])
     return render_template("results.jinja",actual=db.get_theme_data(),
-                            results=owo.search["search"],searchA=True,
+                            results=Anime.search["search"],searchA=True,
                             Favorites=db.get_favorites())
 
 @app.route("/Remove/Favorites/<path:title>")
@@ -114,7 +116,7 @@ def delete_anime(title):
     db.remove_favorites(query)
     if not completed:
         return render_template("results.jinja",actual=db.get_theme_data(),
-                                results=owo.search["search"],searchA=True,
+                                results=Anime.search["search"],searchA=True,
                                 Favorites=db.get_favorites())
     else:
         return render_template("results.jinja",actual=db.get_theme_data(),
@@ -132,11 +134,32 @@ def favorite_animes():
     
 @app.route("/Manga")
 def manga_page():
-    return render_template("manga.jinja",actual=db.get_theme_data() )
+    global Manga
+    return render_template("manga.jinja",actual=db.get_theme_data(),
+                            Data= Manga.populars )
+
+@app.route("/Manga/ReadList/<path:url>")
+def manga_episodes(url):
+    global Manga
+    url=unquote(url)
+    Manga.get_episodes(url)
+    
+    return render_template("manga_epi_list.jinja", chapters=Manga.Episodes, 
+                            actual=db.get_theme_data())
+
+@app.route("/Manga/Read/<path:url>")
+def read_chapter(url):
+    global Manga
+    Manga.get_chapter_info(url)
+
+    return render_template("cascade.jinja", images=Manga.pictures,
+                            actual=db.get_theme_data())
+
+
 
 @app.route("/Config")
 def config_page():
-    return render_template("Config.jinja", themes=Config.theme, 
+    return render_template("Config.jinja", themes=Config.theme,  
                             theme=db.get_theme(), actual=db.get_theme_data())
 
 @app.route('/set', methods=['POST'])

@@ -2,8 +2,29 @@
  {% block content %}
     <div class="container ">
         <div class= "center-align">
-            <h4>Aqui ira el manga o si si</h4>
-        
+            <br>
+            <br>
+            <h4>UMangas populares</h4>
+                {%for Manga in Data%}
+                <a href="/Manga/ReadList/{{Manga.link[0].strip()}}" class="{{actual.text_color}}"> 
+                
+                    <div class="col s12 m7">
+                        <div class="card horizontal">
+                            <div class="card-image">
+                                <img src="{{ Manga.poster[0]}}" alt="{{Manga.title}}"  > 
+                            </div>
+                            <div class="card-stacked">
+                                <div class="card-content {{actual.bg_1}}">
+                                <h6>{{Manga.title}}</h6>
+
+                                <h6>{{Manga.genre}}</h6>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
         
         </div>
     </div>
