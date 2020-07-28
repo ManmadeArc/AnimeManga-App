@@ -32,6 +32,7 @@ Anime.refresh_data()
 Manga=MangaApi.LectorTMO()
 Manga.get_populars()
 completed= False
+completedM = False
 
 @app.route("/")
 def main_page():
@@ -136,7 +137,7 @@ def favorite_animes():
 def manga_page():
     global Manga
     return render_template("manga.jinja",actual=db.get_theme_data(),
-                            Data= Manga.populars )
+                            Data= Manga.populars, searchM=True )
 
 @app.route("/Manga/ReadList/<path:url>")
 def manga_episodes(url):
@@ -154,6 +155,25 @@ def read_chapter(url):
 
     return render_template("cascade.jinja", images=Manga.pictures,
                             actual=db.get_theme_data())
+
+@app.route("/Manga/Search")
+def manga_search():
+    global Manga
+    global completedM
+    completedM = False
+    data= [{'link': None, 'img': [], 'title': None, 'genre': None}]
+    try:
+        change = request.args.get('search')
+        Manga.make_search(unquote(change))
+        print(unquote(change))
+        print(Manga.search)
+    except:
+        return render_template("manga_results.jinja",actual=db.get_theme_data(),
+                                results=Manga.search,searchM=True, data=data
+                                )
+    return render_template("manga_results.jinja",actual=db.get_theme_data(),
+                            results=Manga.search,searchM=True, data=data
+                            )
 
 
 

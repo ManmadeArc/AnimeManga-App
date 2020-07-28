@@ -1,22 +1,23 @@
 {% extends "template.jinja" %}
 
-{% block content %}
 
-  <div class="">
-        <div class= "center-align">
+{% block content %}
+   
+  <div class="container center-align">
+        
             <h4></h4>
-            <div class="col s12 m7">
+            
             {% for img in images  %}
             
-                <div class="col s8 push-s2">
-                <img src={{img}}>
+                <div >
+                <img   class="responsive-img" src={{img}}>
                 </div>
                 
                 
             {% endfor %}
-            </div>
+            
         
-        </div>
-    </div>
+        
 
+    </div>
 {% endblock  %}
