@@ -143,16 +143,17 @@ def manga_episodes(url):
     url=unquote(url)
     Manga.get_episodes(url)
     
-    return render_template("manga_epi_list.jinja", chapters=Manga.Episodes, 
+    return render_template("manga_epi_list.jinja", chapters=enumerate(Manga.Episodes), 
                             actual=db.get_theme_data())
 
-@app.route("/Manga/Read/<path:url>")
-def read_chapter(url):
+@app.route("/Manga/Read/<int:index>/<path:url>")
+def read_chapter(index,url):
     global Manga
     Manga.get_chapter_info(url)
 
-    return render_template("cascade.jinja", images=Manga.pictures,
-                            actual=db.get_theme_data())
+    return render_template("cascade.jinja", images=Manga.pictures, idx=[index-1,index,index+1],
+                            actual=db.get_theme_data(), chapters=Manga.Episodes,
+                            chapters_size=len(Manga.Episodes))
 
 @app.route("/Manga/Search")
 def manga_search():

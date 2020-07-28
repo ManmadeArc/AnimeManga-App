@@ -6,6 +6,23 @@
   <div class="container center-align">
         
             <h4></h4>
+            <div class="row ">
+                <div class = "col s6">
+                    {% if idx[2] == chapters_size  %}
+                        <a class="waves-effect waves-light btn-large  disabled {{actual.accent}}" >  <i class="material-icons">navigate_before</i> Anterior</a>
+                    {%else%}
+                        <a class="waves-effect waves-light btn-large {{actual.accent}}" href ="/Manga/Read/{{idx[2]}}/{{chapters[idx[2]].link}}">  <i class="material-icons">navigate_before</i> Anterior</a>
+                    {% endif%}
+                </div> 
+                <div class = "col s6">
+                    {% if idx[1] == 0 %}
+                        <a class="waves-effect waves-light btn-large disabled {{actual.accent}}" >  <i class="material-icons right">navigate_next</i> Siguiente</a>
+                    {% else %}
+                        <a class="waves-effect waves-light btn-large {{actual.accent}}" href="/Manga/Read/{{idx[0]}}/{{chapters[idx[0]].link}}">  <i class="material-icons right">navigate_next</i> Siguiente</a>
+                    {% endif %}
+                   
+                </div>  
+            </div>
             
             {% for img in images  %}
             
@@ -16,7 +33,23 @@
                 
             {% endfor %}
             
-        
+            <div class="row ">
+                <div class = "col s6">
+                    {% if idx[2] == chapters_size  %}
+                        <a class="waves-effect waves-light btn-large  disabled {{actual.accent}}" >  <i class="material-icons">navigate_before</i> Anterior</a>
+                    {%else%}
+                        <a class="waves-effect waves-light btn-large {{actual.accent}}" href ="/Manga/Read/{{idx[2]}}/{{chapters[idx[2]].link}}">  <i class="material-icons">navigate_before</i> Anterior</a>
+                    {% endif%}
+                </div> 
+                <div class = "col s6">
+                    {% if idx[1] == 0 %}
+                        <a class="waves-effect waves-light btn-large disabled {{actual.accent}}" >  <i class="material-icons right">navigate_next</i> Siguiente</a>
+                    {% else %}
+                        <a class="waves-effect waves-light btn-large {{actual.accent}}" href="/Manga/Read/{{idx[0]}}/{{chapters[idx[0]].link}}">  <i class="material-icons right">navigate_next</i> Siguiente</a>
+                    {% endif %}
+                   
+                </div>  
+            </div>
         
 
     </div>

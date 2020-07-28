@@ -46,7 +46,7 @@ def add_manga(title, img, link):
     with open('default.json','r+') as file:
         data = json.load(file)
         anime={}
-        anime["poster"]=img
+        anime["img"]=img
         anime["title"]=title
         anime['link']=link
         data["Manga"].append(anime)
