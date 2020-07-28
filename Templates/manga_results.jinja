@@ -33,7 +33,14 @@
                                         
                                         
                                         </div>
-                                    
+                                        
+                                        <div class="card-action center-align">
+                                            {% if result.title in Favorites %}
+                                                <a href="/Manga/Remove/{{result.title}}">Remove Favorites</a>
+                                            {% else %}
+                                                <a href="/Manga/Add/{{result.title}}">Add Favorites</a>
+                                            {% endif %}
+                                        </div>
                                         
                                     
                                     </div>

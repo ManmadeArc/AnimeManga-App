@@ -1,9 +1,18 @@
 {
     "theme": "komi",
-    "favorites": [
+    "Anime": [
         {
             "poster": "https://tioanime.com/uploads/portadas/922.jpg",
             "title": "Tamako Market"
+        }
+    ],
+    "Manga": [
+        {
+            "img": [
+                "https://otakuteca.com/images/books/cover/5d19b2cca74a3.jpg"
+            ],
+            "title": "Komi-san wa komyushou desu",
+            "link": " https://lectortmo.com/library/manga/13698/komi-san-wa-komyushou-desu"
         }
     ]
 }

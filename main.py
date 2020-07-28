@@ -120,9 +120,7 @@ def delete_anime(title):
                                 results=Anime.search["search"],searchA=True,
                                 Favorites=db.get_favorites())
     else:
-        return render_template("results.jinja",actual=db.get_theme_data(),
-                                results=db.get_favorites_full_data(),searchA=True,
-                                Favorites=db.get_favorites())
+        return url_for(favorite_animes)
 
 @app.route("/Anime/Favorites")
 def favorite_animes():
@@ -165,17 +163,49 @@ def manga_search():
     try:
         change = request.args.get('search')
         Manga.make_search(unquote(change))
-        print(unquote(change))
-        print(Manga.search)
     except:
         return render_template("manga_results.jinja",actual=db.get_theme_data(),
-                                results=Manga.search,searchM=True, data=data
-                                )
+                                results=Manga.search,searchM=True, data=data,
+                                Favorites=db.get_favorites(False))
     return render_template("manga_results.jinja",actual=db.get_theme_data(),
-                            results=Manga.search,searchM=True, data=data
-                            )
+                            results=Manga.search,searchM=True, data=data,
+                            Favorites=db.get_favorites(False))
+
+@app.route("/Manga/Favorites")
+def manga_favorites():
+    global completedM
+    completedM = True
+    return render_template("manga_results.jinja",actual=db.get_theme_data(),
+                            results=db.get_favorites_full_data(False),searchM=True,
+                            Favorites=db.get_favorites(False))
+
+@app.route("/Manga/Add/<path:title>")
+def add_manga(title):
+    global Manga
+    query=unquote(title)
+    requested={}
+    for results in Manga.search:
+        if  results['title'] ==query:
+            requested=results
+            break
+    db.add_manga(requested['title'], requested['img'], requested['link'])
+    return render_template("manga_results.jinja",actual=db.get_theme_data(),
+                            results=Manga.search,searchM=True,
+                            Favorites=db.get_favorites(False))
 
 
+
+@app.route("/Manga/Remove/<path:title>")
+def remove_manga(title):
+    global Manga
+    query=unquote(title)
+    db.remove_manga(query)
+    if not completed:
+        return render_template("manga_results.jinja",actual=db.get_theme_data(),
+                                results=Manga.search,searchM=True,
+                                Favorites=db.get_favorites(False))
+    else:
+        return url_for(favorite_animes)
 
 @app.route("/Config")
 def config_page():
