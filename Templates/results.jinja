@@ -4,52 +4,51 @@
 
   <div class="container ">
         <div class= "center-align">
-            
-
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             {% for result in results  %}
                 <a href="/Anime/Episodes/{{result.title}}" class="{{actual.text_color}}"> 
-                
-                <div class="col s12 m6">
-                    <div class="card small horizontal">
-                        <div class="card-image ">
-                            <img src="{{result.poster}}" alt="{{result.title}}" style="max-width: none; width: fit-content;" />
-                        </div>
+                    <div class="col s12 m6">
+                        <div class="card small horizontal">
+                            <div class="card-image ">
+                                <img src="{{result.poster}}" alt="{{result.title}}" style="max-width: 200%;max-height: 310px;height: inherit;" />
+                            </div>
+                            <div class="card-stacked {{actual.bg_1}}">
+                                <div class="card-content {{actual.bg_1}}">
+                                    <div class="center-align">
+                                        <h5>{{result.title}}</h5>
+                                        
                         
-                        <div class="card-stacked {{actual.bg_1}}">
-                        
-                            <div class="card-content {{actual.bg_1}}">
-                            <div class="center-align">
-                                <h5>{{result.title}}</h5>
-                                
-                
-                                    {% if result.synopsis != "" %}
+                                            {% if result.synopsis != "" %}
+                                            <div class="container">
+                                            <div class="card-content {{actual.bg_1}}">
+                                                <h5> Sinopsis</h5>
+                                                <span>{{result.synopsis}} </span>
+                                            </div>
+                                            
+                                            </div>
+                                            {% endif %}
+                                        
+                                        
+                                            
                                     
-                                    <div class="card-content {{actual.bg_1}}">
-                                        <h5> Sinopsis</h5>
-                                        <h5>{{result.synopsis}} </h5>
+                                        <div class="card-action center-align">
+                                            {% if result.title in Favorites %}
+                                                <a href="/Remove/Favorites/{{result.title}}">Remove Favorites</a>
+                                            {% else %}
+                                                <a href="/Add/Favorites/{{result.title}}">Add Favorites</a>
+                                            {% endif %}
+                                        </div>
+                                    
                                     </div>
-                                    
-                                    
-                                    {% endif %}
-                                
-                                
                                 </div>
-                            
-                                <div class="card-action center-align">
-                                    {% if result.title in Favorites %}
-                                        <a href="/Remove/Favorites/{{result.title}}">Remove Favorites</a>
-                                    {% else %}
-                                        <a href="/Add/Favorites/{{result.title}}">Add Favorites</a>
-                                    {% endif %}
-                                </div>
-                            
                             </div>
-                            </div>
+                        
                         </div>
-                    
                     </div>
-                    
-                </div>
                 </a>
             {% endfor %}
         
