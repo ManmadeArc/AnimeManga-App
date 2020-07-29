@@ -5,8 +5,8 @@ import tioanime
 from urllib.parse import unquote
 
 
-class AnimeFlv():
-    def __init(self):
+class Anime():
+    def __init__(self):
         self.data={}
         self.Act_Ep={}
         self.Act_servers={}
@@ -15,9 +15,23 @@ class AnimeFlv():
         self.servers={}
 
 
+    def need_refresh(self):
+        if self.data == {}:
+            return True
+        else:
+            anime=self.data["episodes"]
+            anime=anime[0]
+            anime=anime['title']
+            if anime==tioanime.get_last_anime():
+                return False
+            else:
+                return True
+
     def refresh_data(self):
-        animes=tioanime.get_latest_episodes()    
-        self.data=animes
+        print(self.need_refresh())
+        if self.need_refresh():
+            animes=tioanime.get_latest_episodes()    
+            self.data=animes
 
     def get_anime_titles(self):
         animelist = []
@@ -81,8 +95,4 @@ class AnimeFlv():
         return palabra
        
 
-
-
-
-
-        
+print()

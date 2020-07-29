@@ -9,9 +9,20 @@ class LectorTMO():
         self.pictures=[]
 
     
-    def get_populars(self):
+    def need_refresh(self):
+        if self.populars==[]:
+            return True
+        else:
+            if self.populars[0]==TMO.get_last_popular():
+                return False
+            else:
+                return True
 
-        self.populars=TMO.get_populars()
+    def get_populars(self):
+        print(self.need_refresh())
+        if  self.need_refresh():
+            self.populars=TMO.get_populars()
+        
     
     def make_search(self, query):
         self.search=TMO.search(query)

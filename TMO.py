@@ -6,6 +6,18 @@ import re
 hdr= {'User-Agent': 'Mozilla/5.0'}
 site= "https://lectortmo.com"
 
+def get_last_popular():
+    doc=pq(site, parser = 'html',  headers=hdr)
+    populars=doc.find("#pills-populars > div:nth-child(1) > div:nth-child(1)")
+    info={}
+    for manga in populars.items():
+        info['link']= manga.find(" a ").attr("href"),
+        info['poster']=find_url(manga.find("a > div > style").text())
+        info['title']=manga.find("a > div > div > h4").attr('title')
+        info['genre']=manga.find("a > div >span:nth-child(5)").text()
+
+    return info
+
 def find_url(text):
     regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
     url = re.findall(regex,text)       

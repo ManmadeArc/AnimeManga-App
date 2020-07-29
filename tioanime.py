@@ -3,7 +3,12 @@ import requests, js2py, json, urllib.parse
 site="https://tioanime.com"
 
 
+def get_last_anime():
+    doc = pq(site, parser = 'html')
 
+    animes=doc.find('#tioanime > div > section:nth-child(2) > ul > li:nth-child(1)')
+    for event in animes.items():
+        return event.find('article > a > h3').text()
 
 def get_latest_episodes():
     doc = pq(site, parser = 'html')
@@ -105,3 +110,5 @@ def get_aditional_info(link, poster=False):
         return sinopsis, poster ,episodes
     else:
         return sinopsis, episodes
+
+get_last_anime()

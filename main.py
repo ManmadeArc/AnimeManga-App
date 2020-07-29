@@ -16,7 +16,7 @@ from config_file import (FlaskConfig, Config)
 
 from urllib.parse import unquote
 
-import json, db, AnimeApi, tioanime, MangaApi
+import json, db, AnimeApi, MangaApi
 import requests
 
 
@@ -27,10 +27,8 @@ app.config.from_object(FlaskConfig)
 
 ui = FlaskUI(app=app, width=768, height=800)
 
-Anime=AnimeApi.AnimeFlv()
-Anime.refresh_data()
+Anime=AnimeApi.Anime()
 Manga=MangaApi.LectorTMO()
-Manga.get_populars()
 completed= False
 completedM = False
 
@@ -41,6 +39,7 @@ def main_page():
 @app.route("/Anime")
 def anime_page():
     global Anime
+    Anime.refresh_data()
     return render_template("anime.jinja",actual=db.get_theme_data(),data=Anime.act_data(),
                             refresh_A=True,searchA=True)
 
@@ -134,6 +133,7 @@ def favorite_animes():
 @app.route("/Manga")
 def manga_page():
     global Manga
+    Manga.get_populars()
     return render_template("manga.jinja",actual=db.get_theme_data(),
                             Data= Manga.populars, searchM=True )
 
