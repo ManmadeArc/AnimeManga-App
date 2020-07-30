@@ -111,4 +111,4 @@ def get_aditional_info(link, poster=False):
     else:
         return sinopsis, episodes
 
-get_last_anime()
+get_last_anime()    

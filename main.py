@@ -74,15 +74,14 @@ def anime_video(path):
     
     AnimeInfo=Anime.Act_Ep
     
-    xd = Anime.Act_servers
-    
     return render_template("servers.jinja",actual=db.get_theme_data(),
-                            Servers=xd, Anime=AnimeInfo )
-
+                            Servers=enumerate(Anime.Act_servers), Anime=AnimeInfo, 
+                            Servers2=enumerate(Anime.Act_servers))
 @app.route("/Anime/Episodes/<path:path>")
 def anime_eps(path):
     global Anime
     Anime.get_episodes(path)
+    
     return render_template("anime_epi_list.jinja", actual=db.get_theme_data(),
                             DATA=Anime.Episodes)
 
@@ -92,8 +91,10 @@ def anime_eps(path):
 def watch_anime(idx):
     global Anime
     Anime.get_servers_id("/"+idx)
+    print(list(enumerate(Anime.servers['servers'])))
     return render_template("servers.jinja",actual=db.get_theme_data(), 
-                            Servers=Anime.servers['servers'], Anime=Anime.servers )
+                            Servers=enumerate(Anime.servers['servers']), Anime=Anime.servers,
+                            Servers2=enumerate(Anime.servers['servers']) )
 
 @app.route("/Add/Favorites/<path:title>")
 def save_anime(title):
@@ -176,6 +177,7 @@ def manga_search():
 def manga_favorites():
     global completedM
     completedM = True
+
     return render_template("manga_results.jinja",actual=db.get_theme_data(),
                             results=db.get_favorites_full_data(False),searchM=True,
                             Favorites=db.get_favorites(False))

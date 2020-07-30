@@ -4,6 +4,14 @@
         {
             "poster": "https://tioanime.com/uploads/portadas/922.jpg",
             "title": "Tamako Market"
+        },
+        {
+            "poster": "https://tioanime.com/uploads/portadas/1705.jpg",
+            "title": "Tamako Love Story"
+        },
+        {
+            "poster": "https://tioanime.com/uploads/portadas/2806.jpg",
+            "title": "Black Clover (TV)"
         }
     ],
     "Manga": [
@@ -15,14 +23,14 @@
             "link": " https://lectortmo.com/library/manga/13698/komi-san-wa-komyushou-desu"
         },
         {
-            "poster": [
+            "img": [
                 "https://otakuteca.com/images/books/cover/5ea07369648ad.jpg"
             ],
             "title": "The Cuckoo's Fiancee",
             "link": " https://lectortmo.com/library/manga/47995/kakkou-no-iinazuke"
         },
         {
-            "poster": [
+            "img": [
                 "https://otakuteca.com/images/books/cover/5df37df77af63.jpg"
             ],
             "title": "Tomodachi no Imouto ga Ore ni Dake Uzai",
@@ -34,27 +42,6 @@
             ],
             "title": "Sono Bisque Doll wa Koi wo suru",
             "link": " https://lectortmo.com/library/manga/38647/sono-bisque-doll-wa-koi-wo-suru"
-        },
-        {
-            "img": [
-                "https://otakuteca.com/images/books/cover/5deaff78c4af4.jpg"
-            ],
-            "title": "Miharashi-sou no 5-nin no Hanayome",
-            "link": " https://lectortmo.com/library/manga/47200/miharashi-sou-no-5-nin-no-hanayome"
-        },
-        {
-            "img": [
-                "https://otakuteca.com/images/books/cover/5deaff78c4af4.jpg"
-            ],
-            "title": "Miharashi-sou no 5-nin no Hanayome",
-            "link": " https://lectortmo.com/library/manga/47200/miharashi-sou-no-5-nin-no-hanayome"
-        },
-        {
-            "img": [
-                "https://otakuteca.com/images/books/cover/5deaff78c4af4.jpg"
-            ],
-            "title": "Miharashi-sou no 5-nin no Hanayome",
-            "link": " https://lectortmo.com/library/manga/47200/miharashi-sou-no-5-nin-no-hanayome"
         },
         {
             "img": [
