@@ -20,11 +20,42 @@
     {% for server in Servers2  %}
          <div id="{{server[1].title}}{{server[0]}}" class="col s12 center video-container">
             <br>
-            <p>{{Anime.title}} Capitulo {{Anime.episode}}</p>
             <iframe width="560" height="315" frameborder="0" src="{{server[1].code}}" scrolling="no" allowfullscreen=""></iframe>
          </div>
     {% endfor %}
-   </div >
+    </div>
+   
+  
+      
+   {% if buttons %}
+   <br>
+   <div class="center-align">
+    <div class="row">
+         <div class="col s6">
+            {% if chapters[1] == 0 %}
+               <a class="waves-effect waves-light btn-large  disabled {{actual.accent}}" >  <i class="material-icons">navigate_before</i> Anterior</a>
+            {% else %}
+               <a class="waves-effect waves-light btn-large {{actual.accent}}" href ="/Watch/ID/{{chapters[0]}}{{episodeList[chapters[0]].id}}"> <i class="material-icons">navigate_before</i> Anterior</a>
+            {% endif %}
+         </div>
+
+         <div class="col s6">
+            {% if chapters[2]== max_size %}
+                  <a class="waves-effect waves-light btn-large disabled {{actual.accent}}" >  <i class="material-icons right">navigate_next</i> Siguiente</a>
+            {% else %}
+                  <a class="waves-effect waves-light btn-large {{actual.accent}}" href="/Watch/ID/{{chapters[2]}}{{episodeList[chapters[2]].id}}">  <i class="material-icons right">navigate_next</i> Siguiente</a>
+            {% endif %}
+         </div>
+      </div>
+      </div>
+   {%else%}
+
+   {% endif %}
+   
+   
+  
+
+
 
 
 

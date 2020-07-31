@@ -21,7 +21,6 @@ def get_latest_episodes():
         article['title']=event.find('article > a > h3').text()
         article['poster']=site + event.find('article > a > div > figure > img').attr("src")
         article['id']=event.find('article > a').attr("href")
-        article['servers']=get_servers(article['id'])
         episodes['episodes'].append(article)
     return episodes
 

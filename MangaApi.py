@@ -19,7 +19,6 @@ class LectorTMO():
                 return True
 
     def get_populars(self):
-        print(self.need_refresh())
         if  self.need_refresh():
             self.populars=TMO.get_populars()
         

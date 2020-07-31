@@ -28,7 +28,6 @@ class Anime():
                 return True
 
     def refresh_data(self):
-        print(self.need_refresh())
         if self.need_refresh():
             animes=tioanime.get_latest_episodes()    
             self.data=animes

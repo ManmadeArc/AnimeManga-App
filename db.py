@@ -60,7 +60,7 @@ def remove_manga(title):
         data=json.load(file)
         anime=data['Manga']
         for i in range(len(anime)):
-            if anime[i]['title']== title:
+            if anime[i]['title'].strip()== title:
                 anime.pop(i)
                 break
         data['Manga'] = anime

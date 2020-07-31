@@ -70,31 +70,34 @@ def anime_search():
 def anime_video(path):
     f="/"+path
     global Anime
-    Anime.get_recent_servers(f)
+    Anime.get_servers_id(f)
     
-    AnimeInfo=Anime.Act_Ep
     
     return render_template("servers.jinja",actual=db.get_theme_data(),
-                            Servers=enumerate(Anime.Act_servers), Anime=AnimeInfo, 
-                            Servers2=enumerate(Anime.Act_servers))
+                            Servers=enumerate(Anime.servers['servers']), 
+                            Servers2=enumerate(Anime.servers['servers']), buttons=False)
 @app.route("/Anime/Episodes/<path:path>")
 def anime_eps(path):
     global Anime
     Anime.get_episodes(path)
-    
+    Data=Anime.Episodes['episodes'][::-1]
+
     return render_template("anime_epi_list.jinja", actual=db.get_theme_data(),
-                            DATA=Anime.Episodes)
+                            DATA=enumerate(Data))
 
 
 
-@app.route("/Watch/ID/<path:idx>")
-def watch_anime(idx):
+@app.route("/Watch/ID/<int:chapter>/<path:idx>")
+def watch_anime(chapter,idx):
     global Anime
     Anime.get_servers_id("/"+idx)
-    print(list(enumerate(Anime.servers['servers'])))
+    data=Anime.Episodes['episodes'][::-1]
     return render_template("servers.jinja",actual=db.get_theme_data(), 
                             Servers=enumerate(Anime.servers['servers']), Anime=Anime.servers,
-                            Servers2=enumerate(Anime.servers['servers']) )
+                            Servers2=enumerate(Anime.servers['servers']), buttons=True, 
+                            chapters=[chapter-1, chapter, chapter + 1],
+                            max_size=len(Anime.Episodes['episodes']),
+                            episodeList=data)
 
 @app.route("/Add/Favorites/<path:title>")
 def save_anime(title):
@@ -187,10 +190,13 @@ def add_manga(title):
     global Manga
     query=unquote(title)
     requested={}
+    print(query)
     for results in Manga.search:
-        if  results['title'] ==query:
+        if  results['title'].strip() == query.strip():
             requested=results
             break
+    print(requested)
+    print(Manga.search)
     db.add_manga(requested['title'], requested['img'], requested['link'])
     return render_template("manga_results.jinja",actual=db.get_theme_data(),
                             results=Manga.search,searchM=True,
@@ -202,7 +208,7 @@ def add_manga(title):
 def remove_manga(title):
     global Manga
     query=unquote(title)
-    db.remove_manga(query)
+    db.remove_manga(query.strip())
     if not completed:
         return render_template("manga_results.jinja",actual=db.get_theme_data(),
                                 results=Manga.search,searchM=True,
