@@ -190,13 +190,10 @@ def add_manga(title):
     global Manga
     query=unquote(title)
     requested={}
-    print(query)
     for results in Manga.search:
         if  results['title'].strip() == query.strip():
             requested=results
             break
-    print(requested)
-    print(Manga.search)
     db.add_manga(requested['title'], requested['img'], requested['link'])
     return render_template("manga_results.jinja",actual=db.get_theme_data(),
                             results=Manga.search,searchM=True,
