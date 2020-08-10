@@ -20,8 +20,6 @@ import json, db, AnimeApi, MangaApi
 import requests
 
 
-
-
 app = Flask(__name__)
 app.config.from_object(FlaskConfig)
 
@@ -40,7 +38,8 @@ def main_page():
 def anime_page():
     global Anime
     Anime.refresh_data()
-    return render_template("anime.jinja",actual=db.get_theme_data(),data=Anime.act_data(),
+    return render_template("anime.jinja",actual=db.get_theme_data(),
+                            data=Anime.act_data(),
                             refresh_A=True,searchA=True)
 
 @app.route("/Anime/refresh")
@@ -75,7 +74,8 @@ def anime_video(path):
     
     return render_template("servers.jinja",actual=db.get_theme_data(),
                             Servers=enumerate(Anime.servers['servers']), 
-                            Servers2=enumerate(Anime.servers['servers']), buttons=False)
+                            Servers2=enumerate(Anime.servers['servers']), 
+                            buttons=False)
 @app.route("/Anime/Episodes/<path:path>")
 def anime_eps(path):
     global Anime
@@ -93,8 +93,10 @@ def watch_anime(chapter,idx):
     Anime.get_servers_id("/"+idx)
     data=Anime.Episodes['episodes'][::-1]
     return render_template("servers.jinja",actual=db.get_theme_data(), 
-                            Servers=enumerate(Anime.servers['servers']), Anime=Anime.servers,
-                            Servers2=enumerate(Anime.servers['servers']), buttons=True, 
+                            Servers=enumerate(Anime.servers['servers']), 
+                            Anime=Anime.servers,
+                            Servers2=enumerate(Anime.servers['servers']), 
+                            buttons=True, 
                             chapters=[chapter-1, chapter, chapter + 1],
                             max_size=len(Anime.Episodes['episodes']),
                             episodeList=data)
@@ -147,7 +149,8 @@ def manga_episodes(url):
     url=unquote(url)
     Manga.get_episodes(url)
     
-    return render_template("manga_epi_list.jinja", chapters=enumerate(Manga.Episodes), 
+    return render_template("manga_epi_list.jinja", 
+                            chapters=enumerate(Manga.Episodes), 
                             actual=db.get_theme_data())
 
 @app.route("/Manga/Read/<int:index>/<path:url>")
@@ -155,8 +158,10 @@ def read_chapter(index,url):
     global Manga
     Manga.get_chapter_info(url)
 
-    return render_template("cascade.jinja", images=Manga.pictures, idx=[index-1,index,index+1],
-                            actual=db.get_theme_data(), chapters=Manga.Episodes,
+    return render_template("cascade.jinja", images=Manga.pictures, 
+                            idx=[index-1,index,index+1],
+                            actual=db.get_theme_data(), 
+                            chapters=Manga.Episodes,
                             chapters_size=len(Manga.Episodes))
 
 @app.route("/Manga/Search")
@@ -182,7 +187,8 @@ def manga_favorites():
     completedM = True
 
     return render_template("manga_results.jinja",actual=db.get_theme_data(),
-                            results=db.get_favorites_full_data(False),searchM=True,
+                            results=db.get_favorites_full_data(False),
+                            searchM=True,
                             Favorites=db.get_favorites(False))
 
 @app.route("/Manga/Add/<path:title>")
@@ -207,7 +213,8 @@ def remove_manga(title):
     query=unquote(title)
     db.remove_manga(query.strip())
     if not completed:
-        return render_template("manga_results.jinja",actual=db.get_theme_data(),
+        return render_template("manga_results.jinja",
+                                actual=db.get_theme_data(),
                                 results=Manga.search,searchM=True,
                                 Favorites=db.get_favorites(False))
     else:
@@ -216,7 +223,8 @@ def remove_manga(title):
 @app.route("/Config")
 def config_page():
     return render_template("Config.jinja", themes=Config.theme,  
-                            theme=db.get_theme(), actual=db.get_theme_data())
+                            theme=db.get_theme(),
+                            actual=db.get_theme_data())
 
 @app.route('/set', methods=['POST'])
 def set_setting():
@@ -233,5 +241,5 @@ def set_setting():
 
 
 
-app.run(debug=True)
+app.run(host='0.0.0.0', port="5000")
 #ui.run()
