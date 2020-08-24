@@ -60,7 +60,7 @@ def anime_search():
         return render_template("results.jinja",actual=db.get_theme_data(),
                                 results=Anime.search["search"],searchA=True,
                                 Favorites=db.get_favorites())
-        return render_template("results.jinja",actual=db.get_theme_data(),
+    return render_template("results.jinja",actual=db.get_theme_data(),
                             results=Anime.search["search"],searchA=True,
                             Favorites=db.get_favorites())
 
