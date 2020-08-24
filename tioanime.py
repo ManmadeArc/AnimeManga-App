@@ -28,9 +28,9 @@ def get_latest_episodes():
 
 def get_servers(link, dicti=False):
     doc= pq(site+link, parser = 'html')
-    query=doc.find("body > script:nth-child(21)")
+    query=doc.find("body > script:nth-child(22)")
     Data=_servers_from_script(query)
-    servers=[]
+    servers=[]  
     for server in Data:
         info={}
         info['title']=server[0]
@@ -77,6 +77,7 @@ def search(query):
 
 def _get_episodeList_from_Script(script):
     jsExpression=list(script.text())
+    
     for _ in range(51):
         jsExpression.pop(-1)
     jsExpression="".join(jsExpression)
@@ -102,7 +103,7 @@ def get_aditional_info(link, poster=False):
     doc=pq(site+link, parser = 'html')
     sinopsis=doc.find("#tioanime > article > div > div > aside.col.col-sm-8.col-lg-9.col-xl-10 > p.sinopsis").text()
     
-    script=doc.find('body > script:nth-child(21)')
+    script=doc.find('body > script:nth-child(22)')
     episodes=_get_episodeList_from_Script(script)
     if poster:
         poster=doc.find('#tioanime > article > div > div > aside.col.col-sm-4.col-lg-3.col-xl-2 > div > figure > img').attr('src')
@@ -110,4 +111,4 @@ def get_aditional_info(link, poster=False):
     else:
         return sinopsis, episodes
 
-get_last_anime()    
+ 

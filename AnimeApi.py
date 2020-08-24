@@ -54,7 +54,7 @@ class Anime():
     
     def search_Anime(self,Anime):
         aniList=tioanime.search(Anime)
-        
+        print(aniList)
         self.search=aniList
 
 
